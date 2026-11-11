@@ -2,7 +2,6 @@
 #include <string.h>
 #include "driver/spi_master.h"
 #include "driver/gpio.h"
-#include "esp_heap_caps.h"
 #include "esp_log.h"
 #include "GUI_BMPfile.h"
 #include "GUI_Paint.h"
@@ -16,13 +15,13 @@
 
 static const char *TAG = "EPD_BSP";
 
-int EPD_display_BMP()
+int EPD_display_BMP(const char *path)
 {
     esp_err_t err = ESP_FAIL;
     EPD_Init();
     UBYTE *BlackImage;
     UDOUBLE Imagesize = ((EPD_WIDTH % 8 == 0)? (EPD_WIDTH / 8 ): (EPD_WIDTH / 8 + 1)) * EPD_HEIGHT;
-    if((BlackImage = (UBYTE *)heap_caps_malloc(Imagesize, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT)) == NULL) 
+    if((BlackImage = (UBYTE *)heap_caps_malloc(Imagesize,MALLOC_CAP_SPIRAM)) == NULL) 
     {
         ESP_LOGE(TAG,"Failed to apply for black memory...");
         return ESP_FAIL;
@@ -81,7 +80,7 @@ int EPD_display(const UBYTE *Image)
     return 0;
 }
 
-int EPD_display_Clear()
+int EPD_display_Clear(const char *path)
 {
     ESP_LOGI(TAG,"Initializing e-paper display");
     EPD_Init();

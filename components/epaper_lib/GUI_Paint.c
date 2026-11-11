@@ -540,8 +540,7 @@ parameter:
     Color_Foreground : Select the foreground color
     Color_Background : Select the background color
 ******************************************************************************/
-void Paint_DrawString_CN(UWORD Xstart, UWORD Ystart, const char * pString, cFONT* font,
-                        UWORD Color_Foreground, UWORD Color_Background)
+void Paint_DrawString_CN(UWORD Xstart, UWORD Ystart, const char * pString, cFONT* font, UWORD Color_Foreground, UWORD Color_Background)
 {
     const char *p_text;
     int x, y;

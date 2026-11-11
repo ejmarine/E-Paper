@@ -8,9 +8,9 @@
 extern "C" {
 #endif
 
-int EPD_display_BMP();
+int EPD_display_BMP(const char *path);
 int EPD_display(const UBYTE *Image);
-int EPD_display_Clear();
+int EPD_display_Clear(const char *path);
 
 #ifdef __cplusplus
 }

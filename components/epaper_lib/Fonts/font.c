@@ -232,6 +232,20 @@ sFONT Font48 = {
     .size = font48_size_EN
 };
 
+sFONT Font80 = {
+    .font_name = Font80EN,
+    .Width = font80_Width_EN,
+    .Height = font80_Height,
+    .size = font80_size_EN
+};
+
+sFONT Font182 = {
+    .font_name = Font182EN,
+    .Width = font182_Width_EN,
+    .Height = font182_Height,
+    .size = font182_size_EN
+};
+
 // A unified function for obtaining embedded font data
 static bool get_embedded_font_data(cFONT* font, const char* file_type, const uint8_t** data_start, size_t* data_size) 
 {
@@ -276,166 +290,6 @@ static bool get_embedded_font_data(cFONT* font, const char* file_type, const uin
             start = font48EN_fon_start;
             end = font48EN_fon_end;
 #endif
-        }
-        
-    } else if (strcmp(file_type, "CH") == 0) {
-        // Chinese script
-        if (font->encoding == FONT_ENCODING_UTF8) {
-            // UTF-8
-            if (font->size_CH == font12_size_CH) {
-#ifdef CONFIG_FONT12_EMBEDDED
-                start = font12CH_utf_fon_start;
-                end = font12CH_utf_fon_end;
-#endif
-            } else if (font->size_CH == font16_size_CH) {
-#ifdef CONFIG_FONT16_EMBEDDED
-                start = font16CH_utf_fon_start;
-                end = font16CH_utf_fon_end;
-#endif
-            } else if (font->size_CH == font18_size_CH) {
-#ifdef CONFIG_FONT18_EMBEDDED
-                start = font18CH_utf_fon_start;
-                end = font18CH_utf_fon_end;
-#endif
-            } else if (font->size_CH == font24_size_CH) {
-#ifdef CONFIG_FONT24_EMBEDDED
-                start = font24CH_utf_fon_start;
-                end = font24CH_utf_fon_end;
-#endif
-            } else if (font->size_CH == font28_size_CH) {
-#ifdef CONFIG_FONT28_EMBEDDED
-                start = font28CH_utf_fon_start;
-                end = font28CH_utf_fon_end;
-#endif
-            } else if (font->size_CH == font36_size_CH) {
-#ifdef CONFIG_FONT36_EMBEDDED
-                start = font36CH_utf_fon_start;
-                end = font36CH_utf_fon_end;
-#endif
-            } else if (font->size_CH == font48_size_CH) {
-#ifdef CONFIG_FONT48_EMBEDDED
-                start = font48CH_utf_fon_start;
-                end = font48CH_utf_fon_end;
-#endif
-            }
-        } else {
-            // GBK
-            if (font->size_CH == font12_size_CH) {
-#ifdef CONFIG_FONT12_EMBEDDED
-                start = font12CH_gbk_fon_start;
-                end = font12CH_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font16_size_CH) {
-#ifdef CONFIG_FONT16_EMBEDDED
-                start = font16CH_gbk_fon_start;
-                end = font16CH_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font18_size_CH) {
-#ifdef CONFIG_FONT18_EMBEDDED
-                start = font18CH_gbk_fon_start;
-                end = font18CH_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font24_size_CH) {
-#ifdef CONFIG_FONT24_EMBEDDED
-                start = font24CH_gbk_fon_start;
-                end = font24CH_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font28_size_CH) {
-#ifdef CONFIG_FONT28_EMBEDDED
-                start = font28CH_gbk_fon_start;
-                end = font28CH_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font36_size_CH) {
-#ifdef CONFIG_FONT36_EMBEDDED
-                start = font36CH_gbk_fon_start;
-                end = font36CH_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font48_size_CH) {
-#ifdef CONFIG_FONT48_EMBEDDED
-                start = font48CH_gbk_fon_start;
-                end = font48CH_gbk_fon_end;
-#endif
-            }
-        }
-        
-    } else if (strcmp(file_type, "CH_ASICC") == 0) {
-        // symbol font
-        if (font->encoding == FONT_ENCODING_UTF8) {
-            // UTF-8
-            if (font->size_CH == font12_size_CH) {
-#ifdef CONFIG_FONT12_EMBEDDED
-                start = font12CH_ASICC_utf_fon_start;
-                end = font12CH_ASICC_utf_fon_end;
-#endif
-            } else if (font->size_CH == font16_size_CH) {
-#ifdef CONFIG_FONT16_EMBEDDED
-                start = font16CH_ASICC_utf_fon_start;
-                end = font16CH_ASICC_utf_fon_end;
-#endif
-            } else if (font->size_CH == font18_size_CH) {
-#ifdef CONFIG_FONT18_EMBEDDED
-                start = font18CH_ASICC_utf_fon_start;
-                end = font18CH_ASICC_utf_fon_end;
-#endif
-            } else if (font->size_CH == font24_size_CH) {
-#ifdef CONFIG_FONT24_EMBEDDED
-                start = font24CH_ASICC_utf_fon_start;
-                end = font24CH_ASICC_utf_fon_end;
-#endif
-            } else if (font->size_CH == font28_size_CH) {
-#ifdef CONFIG_FONT28_EMBEDDED
-                start = font28CH_ASICC_utf_fon_start;
-                end = font28CH_ASICC_utf_fon_end;
-#endif
-            } else if (font->size_CH == font36_size_CH) {
-#ifdef CONFIG_FONT36_EMBEDDED
-                start = font36CH_ASICC_utf_fon_start;
-                end = font36CH_ASICC_utf_fon_end;
-#endif
-            } else if (font->size_CH == font48_size_CH) {
-#ifdef CONFIG_FONT48_EMBEDDED
-                start = font48CH_ASICC_utf_fon_start;
-                end = font48CH_ASICC_utf_fon_end;
-#endif
-            }
-        } else {
-            // GBK
-            if (font->size_CH == font12_size_CH) {
-#ifdef CONFIG_FONT12_EMBEDDED
-                start = font12CH_ASICC_gbk_fon_start;
-                end = font12CH_ASICC_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font16_size_CH) {
-#ifdef CONFIG_FONT16_EMBEDDED
-                start = font16CH_ASICC_gbk_fon_start;
-                end = font16CH_ASICC_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font18_size_CH) {
-#ifdef CONFIG_FONT18_EMBEDDED
-                start = font18CH_ASICC_gbk_fon_start;
-                end = font18CH_ASICC_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font24_size_CH) {
-#ifdef CONFIG_FONT24_EMBEDDED
-                start = font24CH_ASICC_gbk_fon_start;
-                end = font24CH_ASICC_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font28_size_CH) {
-#ifdef CONFIG_FONT28_EMBEDDED
-                start = font28CH_ASICC_gbk_fon_start;
-                end = font28CH_ASICC_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font36_size_CH) {
-#ifdef CONFIG_FONT36_EMBEDDED
-                start = font36CH_ASICC_gbk_fon_start;
-                end = font36CH_ASICC_gbk_fon_end;
-#endif
-            } else if (font->size_CH == font48_size_CH) {
-#ifdef CONFIG_FONT48_EMBEDDED
-                start = font48CH_ASICC_gbk_fon_start;
-                end = font48CH_ASICC_gbk_fon_end;
-#endif
-            }
         }
     }
     if (start && end) {
@@ -567,7 +421,7 @@ int Get_Char_Font_Data(cFONT* font, const char* character, unsigned char* buffer
 #if defined(CONFIG_FONT_ENABLE_SDCARD) || defined(CONFIG_FONT_ENABLE_TFCARD)
                 file = fopen(font_file, "rb");
                 if (!file) {
-                    ESP_LOGE(TAG, "The symbol font file cannot be opened: %s", font_file);
+                    // ESP_LOGE(TAG, "The symbol font file cannot be opened: %s", font_file);
                     return -1;
                 }
                 fseek(file, font_offset, SEEK_SET);
@@ -691,13 +545,13 @@ static bool get_embedded_font_data_ASCII(sFONT* font, const uint8_t** data_start
         end   = font48EN_fon_end;
 #endif
     } else {
-        #ifdef CONFIG_FONT48_EMBEDDED
+        #ifdef CONFIG_Auxiliary_Font_EMBEDDED
         if (font->size == font80_size_EN) {
-            start = Font80EN_fon_start;
-            end   = Font80EN_fon_end;
+            start = font80EN_fon_start;
+            end   = font80EN_fon_end;
         } else if (font->size == font182_size_EN) {
-            start = Font182EN_fon_start;
-            end   = Font182EN_fon_end;
+            start = font182EN_fon_start;
+            end   = font182EN_fon_end;
         }
         #endif
     }

@@ -34,11 +34,6 @@
 
 extern const unsigned char gImage_image[];
 
-/* chain_84_011.bmp, 800 x 480, 1 bit. A set bit is black. */
-extern const unsigned char gImage_mine[];
-#define GIMAGE_MINE_WIDTH  800
-#define GIMAGE_MINE_HEIGHT 480
-
 
 #if defined(CONFIG_IMG_SOURCE_EMBEDDED)
 

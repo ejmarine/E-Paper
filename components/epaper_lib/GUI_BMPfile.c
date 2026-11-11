@@ -3,10 +3,14 @@
 
 #include "esp_log.h"
 #include "esp_err.h"
+#include "esp_vfs_fat.h"
+#include "sdmmc_cmd.h"
+#include "driver/sdmmc_host.h"
 #include "esp_heap_caps.h"
 
 #include "GUI_BMPfile.h"
 #include "GUI_Paint.h"
+#include "sdcard_bsp.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"

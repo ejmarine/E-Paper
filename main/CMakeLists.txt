@@ -1,5 +1,29 @@
 idf_component_register(
-    SRCS "main.c"
-    INCLUDE_DIRS "."
-    PRIV_REQUIRES epaper_port epaper_lib log
+    SRCS 
+        "main.cc"
+        "menu/menu.cc"
+        "books/books.cc"
+        "status/status.cc"
+        "util/util.cc"
+    INCLUDE_DIRS 
+        "."
+        "menu"
+        "books"
+        "status"
+        "util"
+    PRIV_REQUIRES
+        epaper_port
+        epaper_lib
+        sdcard_bsp
+        button_bsp
+        i2c_bsp
+        shtc3_bsp
+        pcf85063_bsp
+        qmi8658_bsp
+        axpPower
+        log
+        fatfs
+        sdmmc
+        nvs_flash
+        esp_system
 )

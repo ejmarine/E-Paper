@@ -6,12 +6,6 @@
 #include <string.h>
 #include "sdkconfig.h"
 
-#define CONFIG_FONT12_EMBEDDED 1
-#define CONFIG_FONT16_EMBEDDED 1
-#define CONFIG_FONT18_EMBEDDED 1
-#define CONFIG_FONT24_EMBEDDED 1
-// #define CONFIG_FONT28_EMBEDDED 1
-
 // Font encoding type
 typedef enum {
     FONT_ENCODING_UTF8 = 0,
@@ -48,112 +42,36 @@ typedef struct
 #ifdef CONFIG_FONT12_EMBEDDED
 extern const uint8_t font12EN_fon_start[] asm("_binary_font12EN_FON_start");
 extern const uint8_t font12EN_fon_end[] asm("_binary_font12EN_FON_end");
-
-extern const uint8_t font12CH_utf_fon_start[] asm("_binary_UTF_font12CH_FON_start");
-extern const uint8_t font12CH_utf_fon_end[] asm("_binary_UTF_font12CH_FON_end");
-extern const uint8_t font12CH_ASICC_utf_fon_start[] asm("_binary_UTF_font12CH_ASICC_FON_start");
-extern const uint8_t font12CH_ASICC_utf_fon_end[] asm("_binary_UTF_font12CH_ASICC_FON_end");
-
-extern const uint8_t font12CH_gbk_fon_start[] asm("_binary_GBK_font12CH_FON_start");
-extern const uint8_t font12CH_gbk_fon_end[] asm("_binary_GBK_font12CH_FON_end");
-extern const uint8_t font12CH_ASICC_gbk_fon_start[] asm("_binary_GBK_font12CH_ASICC_FON_start");
-extern const uint8_t font12CH_ASICC_gbk_fon_end[] asm("_binary_GBK_font12CH_ASICC_FON_end");
 #endif
 
-// Add 16-point font to embed the data declaration
 #ifdef CONFIG_FONT16_EMBEDDED
 extern const uint8_t font16EN_fon_start[] asm("_binary_font16EN_FON_start");
 extern const uint8_t font16EN_fon_end[] asm("_binary_font16EN_FON_end");
-
-extern const uint8_t font16CH_utf_fon_start[] asm("_binary_UTF_font16CH_FON_start");
-extern const uint8_t font16CH_utf_fon_end[] asm("_binary_UTF_font16CH_FON_end");
-extern const uint8_t font16CH_ASICC_utf_fon_start[] asm("_binary_UTF_font16CH_ASICC_FON_start");
-extern const uint8_t font16CH_ASICC_utf_fon_end[] asm("_binary_UTF_font16CH_ASICC_FON_end");
-
-extern const uint8_t font16CH_gbk_fon_start[] asm("_binary_GBK_font16CH_FON_start");
-extern const uint8_t font16CH_gbk_fon_end[] asm("_binary_GBK_font16CH_FON_end");
-extern const uint8_t font16CH_ASICC_gbk_fon_start[] asm("_binary_GBK_font16CH_ASICC_FON_start");
-extern const uint8_t font16CH_ASICC_gbk_fon_end[] asm("_binary_GBK_font16CH_ASICC_FON_end");
 #endif
 
-// Add 18-point font to embed the data declaration
 #ifdef CONFIG_FONT18_EMBEDDED
 extern const uint8_t font18EN_fon_start[] asm("_binary_font18EN_FON_start");
 extern const uint8_t font18EN_fon_end[] asm("_binary_font18EN_FON_end");
-
-extern const uint8_t font18CH_utf_fon_start[] asm("_binary_UTF_font18CH_FON_start");
-extern const uint8_t font18CH_utf_fon_end[] asm("_binary_UTF_font18CH_FON_end");
-extern const uint8_t font18CH_ASICC_utf_fon_start[] asm("_binary_UTF_font18CH_ASICC_FON_start");
-extern const uint8_t font18CH_ASICC_utf_fon_end[] asm("_binary_UTF_font18CH_ASICC_FON_end");
-
-extern const uint8_t font18CH_gbk_fon_start[] asm("_binary_GBK_font18CH_FON_start");
-extern const uint8_t font18CH_gbk_fon_end[] asm("_binary_GBK_font18CH_FON_end");
-extern const uint8_t font18CH_ASICC_gbk_fon_start[] asm("_binary_GBK_font18CH_ASICC_FON_start");
-extern const uint8_t font18CH_ASICC_gbk_fon_end[] asm("_binary_GBK_font18CH_ASICC_FON_end");
 #endif
 
-// Add 24-point font to embed the data declaration
 #ifdef CONFIG_FONT24_EMBEDDED
 extern const uint8_t font24EN_fon_start[] asm("_binary_font24EN_FON_start");
 extern const uint8_t font24EN_fon_end[] asm("_binary_font24EN_FON_end");
-
-extern const uint8_t font24CH_utf_fon_start[] asm("_binary_UTF_font24CH_FON_start");
-extern const uint8_t font24CH_utf_fon_end[] asm("_binary_UTF_font24CH_FON_end");
-extern const uint8_t font24CH_ASICC_utf_fon_start[] asm("_binary_UTF_font24CH_ASICC_FON_start");
-extern const uint8_t font24CH_ASICC_utf_fon_end[] asm("_binary_UTF_font24CH_ASICC_FON_end");
-
-extern const uint8_t font24CH_gbk_fon_start[] asm("_binary_GBK_font24CH_FON_start");
-extern const uint8_t font24CH_gbk_fon_end[] asm("_binary_GBK_font24CH_FON_end");
-extern const uint8_t font24CH_ASICC_gbk_fon_start[] asm("_binary_GBK_font24CH_ASICC_FON_start");
-extern const uint8_t font24CH_ASICC_gbk_fon_end[] asm("_binary_GBK_font24CH_ASICC_FON_end");
 #endif
 
-// Add a 28-point font to embed the data declaration
 #ifdef CONFIG_FONT28_EMBEDDED
 extern const uint8_t font28EN_fon_start[] asm("_binary_font28EN_FON_start");
 extern const uint8_t font28EN_fon_end[] asm("_binary_font28EN_FON_end");
-
-extern const uint8_t font28CH_utf_fon_start[] asm("_binary_UTF_font28CH_FON_start");
-extern const uint8_t font28CH_utf_fon_end[] asm("_binary_UTF_font28CH_FON_end");
-extern const uint8_t font28CH_ASICC_utf_fon_start[] asm("_binary_UTF_font28CH_ASICC_FON_start");
-extern const uint8_t font28CH_ASICC_utf_fon_end[] asm("_binary_UTF_font28CH_ASICC_FON_end");
-
-extern const uint8_t font28CH_gbk_fon_start[] asm("_binary_GBK_font28CH_FON_start");
-extern const uint8_t font28CH_gbk_fon_end[] asm("_binary_GBK_font28CH_FON_end");
-extern const uint8_t font28CH_ASICC_gbk_fon_start[] asm("_binary_GBK_font28CH_ASICC_FON_start");
-extern const uint8_t font28CH_ASICC_gbk_fon_end[] asm("_binary_GBK_font28CH_ASICC_FON_end");
 #endif
 
-// Add 36-point font to embed the data declaration
 #ifdef CONFIG_FONT36_EMBEDDED
 extern const uint8_t font36EN_fon_start[] asm("_binary_font36EN_FON_start");
 extern const uint8_t font36EN_fon_end[] asm("_binary_font36EN_FON_end");
-
-extern const uint8_t font36CH_utf_fon_start[] asm("_binary_UTF_font36CH_FON_start");
-extern const uint8_t font36CH_utf_fon_end[] asm("_binary_UTF_font36CH_FON_end");
-extern const uint8_t font36CH_ASICC_utf_fon_start[] asm("_binary_UTF_font36CH_ASICC_FON_start");
-extern const uint8_t font36CH_ASICC_utf_fon_end[] asm("_binary_UTF_font36CH_ASICC_FON_end");
-
-extern const uint8_t font36CH_gbk_fon_start[] asm("_binary_GBK_font36CH_FON_start");
-extern const uint8_t font36CH_gbk_fon_end[] asm("_binary_GBK_font36CH_FON_end");
-extern const uint8_t font36CH_ASICC_gbk_fon_start[] asm("_binary_GBK_font36CH_ASICC_FON_start");
-extern const uint8_t font36CH_ASICC_gbk_fon_end[] asm("_binary_GBK_font36CH_ASICC_FON_end");
 #endif
 
-// Add 48-point font to embed the data declaration
 #ifdef CONFIG_FONT48_EMBEDDED
 extern const uint8_t font48EN_fon_start[] asm("_binary_font48EN_FON_start");
 extern const uint8_t font48EN_fon_end[] asm("_binary_font48EN_FON_end");
-
-extern const uint8_t font48CH_utf_fon_start[] asm("_binary_UTF_font48CH_FON_start");
-extern const uint8_t font48CH_utf_fon_end[] asm("_binary_UTF_font48CH_FON_end");
-extern const uint8_t font48CH_ASICC_utf_fon_start[] asm("_binary_UTF_font48CH_ASICC_FON_start");
-extern const uint8_t font48CH_ASICC_utf_fon_end[] asm("_binary_UTF_font48CH_ASICC_FON_end");
-
-extern const uint8_t font48CH_gbk_fon_start[] asm("_binary_GBK_font48CH_FON_start");
-extern const uint8_t font48CH_gbk_fon_end[] asm("_binary_GBK_font48CH_FON_end");
-extern const uint8_t font48CH_ASICC_gbk_fon_start[] asm("_binary_GBK_font48CH_ASICC_FON_start");
-extern const uint8_t font48CH_ASICC_gbk_fon_end[] asm("_binary_GBK_font48CH_ASICC_FON_end");
 #endif
 
 // Add an auxiliary font embedding data declaration
@@ -168,45 +86,47 @@ extern const uint8_t font182EN_fon_end[] asm("_binary_font182EN_FON_end");
 
 
 // Definition of English font file path
-#define Font12EN "/Font12/font12EN.FON"
-#define Font16EN "/Font16/font16EN.FON"
-#define Font18EN "/Font18/font18EN.FON"
-#define Font24EN "/Font24/font24EN.FON"
-#define Font28EN "/Font28/font28EN.FON"
-#define Font36EN "/Font36/font36EN.FON"
-#define Font48EN "/Font48/font48EN.FON"
+#define Font12EN "/sdcard/font/ASICC/font12EN.FON"
+#define Font16EN "/sdcard/font/ASICC/font16EN.FON"
+#define Font18EN "/sdcard/font/ASICC/font18EN.FON"
+#define Font24EN "/sdcard/font/ASICC/font24EN.FON"
+#define Font28EN "/sdcard/font/ASICC/font28EN.FON"
+#define Font36EN "/sdcard/font/ASICC/font36EN.FON"
+#define Font48EN "/sdcard/font/ASICC/font48EN.FON"
+#define Font80EN "/sdcard/font/ASICC/font80EN.FON"
+#define Font182EN "/sdcard/font/ASICC/font182EN.FON"
 
 // The file path of UTF-8 Chinese font
-#define UTF_Font12CH            "/Font12/UTF_font12CH.FON"
-#define UTF_Font12CH_ASICC      "/Font12/UTF_font12CH_ASICC.FON"
-#define UTF_Font16CH            "/Font16/UTF_font16CH.FON"
-#define UTF_Font16CH_ASICC      "/Font16/UTF_font16CH_ASICC.FON"
-#define UTF_Font18CH            "/Font18/UTF_font18CH.FON"
-#define UTF_Font18CH_ASICC      "/Font18/UTF_font18CH_ASICC.FON"
-#define UTF_Font24CH            "/Font24/UTF_font24CH.FON"
-#define UTF_Font24CH_ASICC      "/Font24/UTF_font24CH_ASICC.FON"
-#define UTF_Font28CH            "/Font28/UTF_font28CH.FON"
-#define UTF_Font28CH_ASICC      "/Font28/UTF_font28CH_ASICC.FON"
-#define UTF_Font36CH            "/Font36/UTF_font36CH.FON"
-#define UTF_Font36CH_ASICC      "/Font36/UTF_font36CH_ASICC.FON"
-#define UTF_Font48CH            "/Font48/UTF_font48CH.FON"
-#define UTF_Font48CH_ASICC      "/Font48/UTF_font48CH_ASICC.FON"
+#define UTF_Font12CH            "/sdcard/font/UTF/font12CH.FON"
+#define UTF_Font12CH_ASICC      "/sdcard/font/UTF/font12CH_ASICC.FON"
+#define UTF_Font16CH            "/sdcard/font/UTF/font16CH.FON"
+#define UTF_Font16CH_ASICC      "/sdcard/font/UTF/font16CH_ASICC.FON"
+#define UTF_Font18CH            "/sdcard/font/UTF/font18CH.FON"
+#define UTF_Font18CH_ASICC      "/sdcard/font/UTF/font18CH_ASICC.FON"
+#define UTF_Font24CH            "/sdcard/font/UTF/font24CH.FON"
+#define UTF_Font24CH_ASICC      "/sdcard/font/UTF/font24CH_ASICC.FON"
+#define UTF_Font28CH            "/sdcard/font/UTF/font28CH.FON"
+#define UTF_Font28CH_ASICC      "/sdcard/font/UTF/font28CH_ASICC.FON"
+#define UTF_Font36CH            "/sdcard/font/UTF/font36CH.FON"
+#define UTF_Font36CH_ASICC      "/sdcard/font/UTF/font36CH_ASICC.FON"
+#define UTF_Font48CH            "/sdcard/font/UTF/font48CH.FON"
+#define UTF_Font48CH_ASICC      "/sdcard/font/UTF/font48CH_ASICC.FON"
 
 // The file path of GBK Chinese font
-#define GBK_Font12CH            "/Font12/GBK_font12CH.FON"
-#define GBK_Font12CH_ASICC      "/Font12/GBK_font12CH_ASICC.FON"
-#define GBK_Font16CH            "/Font16/GBK_font16CH.FON"
-#define GBK_Font16CH_ASICC      "/Font16/GBK_font16CH_ASICC.FON"
-#define GBK_Font18CH            "/Font18/GBK_font18CH.FON"
-#define GBK_Font18CH_ASICC      "/Font18/GBK_font18CH_ASICC.FON"
-#define GBK_Font24CH            "/Font24/GBK_font24CH.FON"
-#define GBK_Font24CH_ASICC      "/Font24/GBK_font24CH_ASICC.FON"
-#define GBK_Font28CH            "/Font28/GBK_font28CH.FON"
-#define GBK_Font28CH_ASICC      "/Font28/GBK_font28CH_ASICC.FON"
-#define GBK_Font36CH            "/Font36/GBK_font36CH.FON"
-#define GBK_Font36CH_ASICC      "/Font36/GBK_font36CH_ASICC.FON"
-#define GBK_Font48CH            "/Font48/GBK_font48CH.FON"
-#define GBK_Font48CH_ASICC      "/Font48/GBK_font48CH_ASICC.FON"
+#define GBK_Font12CH            "/sdcard/font/GBK/font12CH.FON"
+#define GBK_Font12CH_ASICC      "/sdcard/font/GBK/font12CH_ASICC.FON"
+#define GBK_Font16CH            "/sdcard/font/GBK/font16CH.FON"
+#define GBK_Font16CH_ASICC      "/sdcard/font/GBK/font16CH_ASICC.FON"
+#define GBK_Font18CH            "/sdcard/font/GBK/font18CH.FON"
+#define GBK_Font18CH_ASICC      "/sdcard/font/GBK/font18CH_ASICC.FON"
+#define GBK_Font24CH            "/sdcard/font/GBK/font24CH.FON"
+#define GBK_Font24CH_ASICC      "/sdcard/font/GBK/font24CH_ASICC.FON"
+#define GBK_Font28CH            "/sdcard/font/GBK/font28CH.FON"
+#define GBK_Font28CH_ASICC      "/sdcard/font/GBK/font28CH_ASICC.FON"
+#define GBK_Font36CH            "/sdcard/font/GBK/font36CH.FON"
+#define GBK_Font36CH_ASICC      "/sdcard/font/GBK/font36CH_ASICC.FON"
+#define GBK_Font48CH            "/sdcard/font/GBK/font48CH.FON"
+#define GBK_Font48CH_ASICC      "/sdcard/font/GBK/font48CH_ASICC.FON"
 
 // Font size definition
 #define font12_Width_EN         8
@@ -259,6 +179,10 @@ extern const uint8_t font182EN_fon_end[] asm("_binary_font182EN_FON_end");
 #define font182_Height          182
 #define font182_size_EN         (font182_Width_EN * font182_Height / 8)
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // Predefined font sample declaration
 extern cFONT Font12_UTF8;
 extern cFONT Font16_UTF8;
@@ -286,10 +210,6 @@ extern sFONT Font36;
 extern sFONT Font48;
 extern sFONT Font80;
 extern sFONT Font182;
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 // Font reading function declaration
 int Get_Char_Font_Data(cFONT* font, const char* character, unsigned char* buffer);

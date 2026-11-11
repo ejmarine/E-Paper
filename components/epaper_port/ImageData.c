@@ -3952,8 +3952,6 @@ const unsigned char gImage_GPS[128] = { /* 0X00,0X01,0X20,0X00,0X20,0X00, */
 0XFC,0X00,0X00,0X3F,0XFF,0XE0,0X0F,0XFF,0XFF,0XFF,0XFF,0XFF,0XFF,0XFF,0XFF,0XFF,
 };
 
-extern const unsigned char gImage_mine[];
-
 
 #endif
 

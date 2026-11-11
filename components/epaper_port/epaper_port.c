@@ -3,6 +3,7 @@
 #include "driver/spi_master.h"
 #include "driver/gpio.h"
 #include "esp_log.h"
+#include "axp_prot.h"
 
 #include "epaper_port.h"
 
@@ -178,6 +179,17 @@ static void EPD_ReadBusy(void)
 function :	Power on/off control for e-ink screens
 parameter:
 ******************************************************************************/
+static void EPD_Power_ON(void)
+{
+    enapwrstate(ALDO3);
+    // disapwrstate(ALDO3);
+}
+
+static void EPD_Power_OFF(void)
+{
+    // enapwrstate(ALDO3);
+    disapwrstate(ALDO3);
+}
 
 /******************************************************************************
 function :	Turn On Display full
@@ -221,6 +233,7 @@ parameter:
 ******************************************************************************/
 void EPD_Init(void)
 {
+    EPD_Power_ON();
     vTaskDelay(pdMS_TO_TICKS(10));
     EPD_Reset();
 
@@ -273,6 +286,7 @@ void EPD_Init(void)
 //Fast update initialization
 void EPD_Init_Fast(void)
 {
+    EPD_Power_ON();
     vTaskDelay(pdMS_TO_TICKS(500));
 	EPD_Reset(); 
 	
@@ -329,6 +343,7 @@ void EPD_Init_Fast(void)
 //4 Gray update initialization
 void EPD_Init_4GRAY(void)
 {
+    EPD_Power_ON();
     vTaskDelay(pdMS_TO_TICKS(500));
 	EPD_Reset();
 	
@@ -391,23 +406,22 @@ void EPD_Clear(void)
     UWORD Width, Height;
     Width = (EPD_WIDTH % 8 == 0)? (EPD_WIDTH / 8 ): (EPD_WIDTH / 8 + 1);
     Height = EPD_HEIGHT;
+    UDOUBLE buffer_size = Width * Height;
+    
+    UBYTE* buffer = (UBYTE*)malloc(buffer_size);
+    if (!buffer) {
+        ESP_LOGE(TAG, "Failed to allocate buffer for clear operation");
+        return;
+    }
+    memset(buffer, 0xFF, buffer_size);
     
     EPD_SendCommand(0x24);
-    for (UWORD j = 0; j < Height; j++) {
-        for (UWORD i = 0; i < Width; i++) {
-            EPD_SendData(0XFF);
-        }
-        vTaskDelay(pdMS_TO_TICKS(1));
-    }
+    EPD_SendDataBuffer(buffer, buffer_size);
     
     EPD_SendCommand(0x26);
-    for (UWORD j = 0; j < Height; j++) {
-        for (UWORD i = 0; i < Width; i++) {
-            EPD_SendData(0XFF);
-        }
-        vTaskDelay(pdMS_TO_TICKS(1));
-    }
+    EPD_SendDataBuffer(buffer, buffer_size);
     
+    free(buffer);
     EPD_TurnOnDisplay();
 }
 
@@ -683,5 +697,6 @@ void EPD_Sleep(void)
     epaper_rst_0;
     epaper_cs_0;
     epaper_dc_0;
+    EPD_Power_OFF();
     vTaskDelay(pdMS_TO_TICKS(10));
 }
