@@ -10,6 +10,9 @@
 
 
 static const char *TAG = "main";
+const int WIDTH_CHARS = 27; // number of chararcters displayed on one line
+const int HEIGHT_CHARS = 24; // number of lines displayed on one page
+const int PAGE_LEN = WIDTH_CHARS * HEIGHT_CHARS;
 
 file_entry_t* books_draw() {
     
@@ -29,26 +32,28 @@ file_entry_t* books_draw() {
 }
 
 
-int book_load(uint8_t* buf, size_t len, file_entry_t file) {
+int book_page_load(uint8_t* buf, int page_num, file_entry_t file) {
 
     std::string filename = "/sdcard/";
     filename += file.name;
 
-    if (sd_read_file_to_buffer(filename.c_str(), buf, len)) {
+    if (s_example_read_from_offset(filename.c_str(), (char*)buf, PAGE_LEN, page_num * PAGE_LEN)) {
         ESP_LOGE(TAG, "Successfuly Read File %s", filename.c_str());
         return 1;
     }
     else {
-        ESP_LOGE(TAG, "Could not read %s %d", filename.c_str(), len);
+        ESP_LOGE(TAG, "Could not read %s %d", filename.c_str(), PAGE_LEN * page_num);
         return 0;
     }
 }
 
 void book_draw(uint8_t* buf, size_t len) {
     char glyph[2] = {'\0', '\0'};
-    for (size_t i = 0; i < len && buf[i] != 0 && buf[i] != 0xFF; i++) {
-        glyph[0] = (char)buf[i];
-        Paint_DrawString_EN((UWORD)(i * 17 + 10), 40, glyph, &Font16, WHITE, BLACK);
+    for (size_t i = 0; i < HEIGHT_CHARS; i++) {
+        for (size_t j = 0; j < WIDTH_CHARS && buf[j*i] != 0 && buf[j*i] != 0xFF; j++) {
+        glyph[0] = (char)buf[j + (i * WIDTH_CHARS)];
+        Paint_DrawString_EN((UWORD)(j * 17 + 10), i * 30 + 40, glyph, &Font16, WHITE, BLACK);
+        }
     }
 }
 
@@ -59,7 +64,7 @@ void books_loop(UBYTE *Image_Mono){
 
     ESP_LOGE(TAG, "Entered Books Loop");
 
-    uint8_t page_buf[256] = {};
+    uint8_t page_buf[PAGE_LEN] = {};
 
     page_wipe();
     menu_draw(Image_Mono, 1);
@@ -98,14 +103,67 @@ void books_loop(UBYTE *Image_Mono){
             }
         }
         else if (input == 7) {
+
+            read_loop(Image_Mono, entries[selection]);
             
-            if (book_load(page_buf, sizeof(page_buf), entries[selection])) {
-                page_wipe();
-                book_draw(page_buf, sizeof(page_buf));
-                epd_lock();
-                EPD_Display_Base(Image_Mono);
-                epd_unlock();
+            selection = 0;
+            page_wipe();
+            menu_draw(Image_Mono, 1);
+            select_draw(Image_Mono, 1, selection);
+            file_entry_t *entries = books_draw();
+            epd_lock();
+            EPD_Display_Partial(Image_Mono, 0, 0, 800, 480);
+            epd_unlock();
+        }
+        else if (input == 21) {
+            return;
+        }
+    }
+}
+
+void read_loop(UBYTE *Image_Mono, file_entry_t file) {
+    int input;
+    int page_num = 0;
+
+    ESP_LOGE(TAG, "Entered Reading Loop");
+
+    uint8_t page_buf[PAGE_LEN] = {};
+
+    if (!book_page_load(page_buf, page_num, file)) {
+        return;
+    }
+
+    page_wipe();
+    book_draw(page_buf, page_num);
+    epd_lock();
+    EPD_Display_Base(Image_Mono);
+    epd_unlock();
+
+    while (1) {
+        input = wait_key_event_and_return_code(pdMS_TO_TICKS(1000));
+
+        ESP_LOGE(TAG, "%d", input);
+
+        if (input == 14) {
+            page_num++;
+            if (!book_page_load(page_buf, page_num, file)) {
+                return;
             }
+            book_draw(page_buf, PAGE_LEN);
+            epd_lock();
+            EPD_Display_Base(Image_Mono);
+            epd_unlock();
+
+        }
+        else if (input == 0) {
+            page_num--;
+            if (!book_page_load(page_buf, page_num, file)) {
+                return;
+            }
+            book_draw(page_buf, PAGE_LEN);
+            epd_lock();
+            EPD_Display_Base(Image_Mono);
+            epd_unlock();
         }
         else if (input == 21) {
             return;
