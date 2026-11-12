@@ -25,6 +25,12 @@ void status_draw(int hr, int min, int bat) {
     Paint_DrawString_EN(410, 0, batp.c_str(), &Font16, WHITE, BLACK);
 }
 
+void charging_draw() {
+    Paint_DrawLine(465, 15, 470, 5, BLACK, DOT_PIXEL_2X2, LINE_STYLE_SOLID);
+    Paint_DrawLine(465, 15, 475, 15, BLACK, DOT_PIXEL_2X2, LINE_STYLE_SOLID);
+    Paint_DrawLine(470, 25, 475, 15, BLACK, DOT_PIXEL_2X2, LINE_STYLE_SOLID);
+}
+
 void status_wipe() {
     Paint_DrawRectangle(0, 0, 480, 29, WHITE, DOT_PIXEL_1X1, DRAW_FILL_FULL);
 }
@@ -38,6 +44,9 @@ void status_Task(void *arg) {
     while (1) {
         epd_lock();
         status_wipe();
+        if (get_usb_connected()) {
+            charging_draw();
+        }
         status_draw(18, time, get_battery_power());
         time = (time + 1) % 60;
         display_partial_paint(0, 0, 480, 32);

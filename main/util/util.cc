@@ -46,3 +46,16 @@ void display_partial_paint(UWORD x0, UWORD y0, UWORD x1, UWORD y1)
     EPD_Display_Partial(window, px0, py0, px1, py1);
     free(window);
 }
+
+int next_space(uint8_t* buf, int start, int max) {
+    int ret = 0;
+    for (int i = start+1; i < max + start; i++) {
+        if ((char)buf[i] != ' ' && (char)buf[i] != '-') {
+            ret++;
+        }
+        else {
+            return ret;
+        }
+    }
+    return ret;
+}
